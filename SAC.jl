@@ -43,7 +43,7 @@ critic2 = Chain(Dense(state_size+action_size, 25, relu),Dense(25,25,relu),Dense(
 critic1_tgt = deepcopy(critic1)
 critic2_tgt = deepcopy(critic2)
 
-function update_target!(target,model; rho = 0.1)
+function update_target!(target,model; rho = 0.01)
    for p = 1:3
        target[p].b .= rho*model[p].b .+ (1 - rho)*target[p].b    # updation of target Actor Network
        target[p].W .= rho*model[p].W .+ (1 - rho)*target[p].W
